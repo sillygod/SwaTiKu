@@ -1,0 +1,48 @@
+#+TITLE: Sieve of Eratosthenes
+#+DESCRIPTION: Write some notes about the exercism
+
+* Introduction
+  
+  https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+  
+  
+# to check how to enable the virtual environment for this code block
+
+#+begin_src python
+
+def primes(limit):
+    if limit < 2:
+        return []
+
+    marks = [True] * (limit + 1)
+    primes_table = []
+
+    for i in range(2, limit + 1):
+        # take the next available unmarked number in the list
+        if marks[i]:
+            primes_table.append(i)
+            the_len_need_to_mark = len(marks[i:(limit + 1):i])
+            # mark all the multiple of the current prime
+            marks[i:(limit + 1):i] = [False] * the_len_need_to_mark
+
+    return primes_table
+
+#+end_src
+
+
+* Complexity
+
+https://stackoverflow.com/questions/2582732/time-complexity-of-sieve-of-eratosthenes-algorithm
+  
+O(n lg(lg n)) holy shit... the complexity is fucking hard to calculate
+
+
+
+to compare two algorithm with the n ln n basic prime check way
+for n in nums:
+    while i in sqrt(n):
+       if n % i == 0
+          not primes
+
+like this article do..
+https://www.geeksforgeeks.org/analysis-different-methods-find-prime-number-python/
